@@ -60,9 +60,15 @@ How well do the required/preferred skills align with the candidate's capabilitie
 | 40-59 | Partial match, significant upskilling needed |
 | 0-39 | Fundamental mismatch |
 
-**Strong match areas:** [YOUR_PRIMARY_SKILLS]
-**Moderate match areas:** [YOUR_SECONDARY_SKILLS]
-**Weak match areas:** [SKILLS_YOU_LACK]
+**Strong match areas:** TypeScript, Node.js, PostgreSQL, Redis, BullMQ, distributed and event-driven backend architecture, queue design (DLQs, retry/backoff, idempotency), REST API design, Docker, CI/CD, real-time systems (Pub/Sub, Socket.IO), LLM integration (LangChain, LangGraph, RAG, vector databases)
+**Moderate match areas:** Next.js/React frontend work, Fastify, Express, NestJS, MongoDB, Prisma, GCP, AWS S3, FFmpeg/HLS media pipelines, Playwright
+**Weak match areas:** Enterprise-scale multi-team architecture, formal people management, Python, Go, Java/Kotlin, Kubernetes at production scale, mobile development, data engineering / ETL platforms, security clearance-gated or regulated-industry work
+
+### Candidate-specific exclusions
+
+**Written Hindi or Odia.** The candidate speaks both conversationally but cannot write either. A posting requiring written Hindi/Odia proficiency is a Language Gate FLAG (see below), and for roles where the written requirement is structural (documentation, client-facing written work in those languages) treat the FLAG as a soft fail.
+
+**Visa sponsorship required for non-Indian on-site roles.** The candidate is open to relocating within India and to remote work; on-site roles outside India need explicit sponsorship. Run the Eligibility Gate above normally and treat a silent posting as unverified, not as a pass.
 
 ### 2. Experience Match (0-100)
 Does work history align with what they're looking for? Match on the function and nature of the work performed, not the literal job title - a "Data Consultant" and a "Data Scientist" role can be functionally identical.
@@ -74,9 +80,9 @@ Does work history align with what they're looking for? Match on the function and
 | 40-59 | Adjacent experience, would need to make the case |
 | 0-39 | Unrelated experience |
 
-**Strong:** [YOUR_DIRECT_EXPERIENCE_DOMAINS]
-**Moderate:** [YOUR_ADJACENT_EXPERIENCE]
-**Entry-level:** [ROLES_WITH_LIMITED_EXPERIENCE]
+**Strong:** Backend engineering with TypeScript/Node.js; distributed-systems and queue architecture; infrastructure ownership (self-hosting, deployment, CI/CD); LLM-integrated backends and RAG systems
+**Moderate:** Frontend engineering (Next.js/React); full-stack product work at startup scale; media/streaming pipelines; browser automation and scraping
+**Entry-level:** Enterprise-scale backend (multi-team, high-traffic), platform/SRE roles at large orgs, data engineering, ML research/engineering beyond applied LLM integration
 
 ### 3. Behavioral/Culture Fit (0-100)
 Does the role and company culture match the behavioral profile?
@@ -107,19 +113,20 @@ Does this role advance career goals and contain tasks that energize?
 | 0-39 | Dead end or backwards step |
 
 **Career goals:**
-- [YOUR_CAREER_GOAL_1]
-- [YOUR_CAREER_GOAL_2]
-- [YOUR_CAREER_GOAL_3]
+- Build deep expertise in distributed systems and backend architecture at a company where infrastructure reliability is a first-class concern
+- Move toward AI/GenAI engineering roles that combine LLM integration with real backend depth, not prompt-layer work
+- Grow from individual ownership into technical leadership (tech lead, staff engineer) over the next 3-5 years
 
 **Motivation filter:** Evaluate not just whether you *can* do the tasks, but whether the tasks will *energize* you. Consider:
-- Tasks that energize: [YOUR_ENERGIZING_TASKS]
-- Tasks that drain: [YOUR_DRAINING_TASKS]
-- Non-task factors: leadership style, department culture, company values, degree of autonomy
+- Tasks that energize: designing queue and event-driven architectures, debugging concurrency and failure modes, owning infrastructure end-to-end, building RAG and agentic LLM systems, shipping to production
+- Tasks that drain: maintenance-only work, UI-heavy ticket work, environments where every design decision needs sign-off, heavy process without engineering problems
+- Non-task factors: autonomy over architecture, a small team where one engineer owns a system, managers who engage with technical decisions
 
 **Life situation alignment:** Consider personal constraints:
-- **Security**: [YOUR_FINANCIAL_SITUATION_CONTEXT]
-- **Flexibility**: [YOUR_SCHEDULE_CONSTRAINTS]
-- **Professional development**: [YOUR_GROWTH_PRIORITIES]
+- **Security:** Employed and earning at Accenture; a move can be selective rather than urgent. Still, current role is MEAN-stack application work, which is below the candidate's backend/distributed level - so a good match is worth pursuing actively rather than waiting.
+- **Flexibility:** Open to relocating anywhere in India; remote and hybrid both work.
+- **Professional development:** Wants distributed-systems depth and AI-engineering scope. Prioritize roles that offer architectural ownership over title or brand.
+
 
 ### 6. Salary Benchmark (Optional)
 

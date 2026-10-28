@@ -1,90 +1,148 @@
 # Search Queries for Job Scraper
 
-<!-- SETUP: Customize these queries based on your skills, target roles, and location -->
+<!-- Populated by /setup for Niladribihari Mohanta - Indian market, English-language postings. -->
 
 ## Installed portal CLIs (primary for `/scrape`)
 
-`/scrape` discovers every portal skill under `.agents/skills/*/SKILL.md` and runs its CLI first. Shipped country-agnostic CLIs include `linkedin-search` and `freehire-search`; Danish demos and any skill you add with `/add-portal` are included the same way. You do **not** need a matching `site:` line below for those CLIs to run.
+`/scrape` discovers every portal skill under `.agents/skills/*/SKILL.md` and runs its CLI first.
 
-The `site:` query templates in this file are the **WebSearch fallback** — for portals without a CLI, company career pages, or when a CLI fails.
+**Enabled for this market:**
+- `linkedin-search` - LinkedIn Jobs
+- `freehire-search` - freehire aggregator
 
-**Language scope:** write every query category in every language listed in your CLAUDE.md Languages table (typically 1-2, sometimes more). A posting requiring a language you have *not* declared, as a job condition, is excluded before scoring; a posting requiring a *higher level* than you declared in a language you *do* work in is flagged for your own judgment, not excluded — see `04-job-evaluation.md`'s Language Gate, the single source of truth for this rule. Translate each category's keywords rather than machine-translating word-for-word (e.g. "Frontend Developer" -> "Desarrollador Frontend", not a literal word-for-word translation) if you work in more than one language.
+**Installed but disabled** (wrong market - leave off unless you start targeting Denmark):
+`jobindex-search`, `jobbank-search`, `jobdanmark-search`, `jobnet-search`.
+
+The `site:` query templates in this file are the **WebSearch fallback** - for Indian portals without a CLI (Naukri, Instahyre, Cutshort, Foundit, Wellfound), company career pages, or when a CLI fails.
+
+**Language scope:** all postings are English-language. The candidate's working language is English only; Hindi and Odia are spoken-only and should never drive a query. Never generate Hindi- or Odia-language queries for this candidate.
 
 ## Search Sites
 
-Primary (your market's job boards - scaffold one with `/add-portal`):
-- **[YOUR_JOB_BOARD]** - your market's largest general job board
-- **linkedin.com/jobs** - LinkedIn job listings (filter: [YOUR_COUNTRY] / [YOUR_CITY]); also covered by `linkedin-search` CLI
-- **[YOUR_INDUSTRY_JOB_BOARD]** - a niche/industry board for your field (optional)
-- **[YOUR_ADDITIONAL_JOB_BOARD]** - another major board for your market (optional)
+Primary (country-agnostic CLIs, enabled):
+- **linkedin.com/jobs** - primary board; filter to India, or city-by-city
+- **freehire** - aggregator CLI
 
-Secondary (company career pages via Google):
-- Direct Google searches with `site:` filters for known target companies
+Secondary (Indian boards via WebSearch `site:` fallback):
+- **naukri.com** - largest Indian general board
+- **instahyre.com** - curated tech-only board, strong for backend/startup roles
+- **cutshort.io** - startup-focused
+- **foundit.in** - general board (formerly Monster India)
+- **wellfound.com** (AngelList) - startups, often remote-first
+- **Company career pages** - direct `site:` searches for target companies, plus Greenhouse/Lever/Ashby/Workday hosts
+
+## Role Type Note
+
+The candidate's own headline is "Backend Developer | Distributed Systems & Generative AI". Priority 1 therefore spans **two** connected functions rather than one. They converge on the same underlying work pattern (TypeScript/Node backend infrastructure, queues, LLM integration), so they are written as sub-categories of a single top priority rather than separate tiers.
 
 ## Query Categories
 
-Queries are grouped by priority. Write **each category in every language from your Languages table** (see Language scope above). Combine each query with your location terms (e.g. your city, region, or metro area) where the site supports it.
+### Priority 1a: Backend / Distributed Systems
 
-**Organize by function, not job title.** The same underlying work carries different titles across companies and markets (a "Data Scientist" role at one employer may be posted as "Insights Analyst" or "Data Consultant" at another). Name each priority category after the function it covers, and list several plausible job titles as query variants within that category rather than betting an entire priority tier on one exact title string.
-
-### Priority 1: [YOUR_PRIMARY_ROLE_TYPE]
-
-These match your strongest and most desired career direction.
+The strongest match: TypeScript/Node backend with queue, infrastructure and systems depth.
 
 ```
-site:[YOUR_JOB_BOARD] "[YOUR_PRIMARY_JOB_TITLE_1]" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_PRIMARY_JOB_TITLE_2]" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_KEY_SKILL]" [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_PRIMARY_JOB_TITLE_1]" [YOUR_COUNTRY]
+site:naukri.com "Backend Engineer" "Node.js" (Visakhapatnam OR Hyderabad OR Bengaluru)
+site:naukri.com "Backend Developer" "TypeScript" (Bengaluru OR Hyderabad)
+site:linkedin.com/jobs "Backend Engineer" TypeScript India
+site:linkedin.com/jobs "Senior Backend Engineer" "Node.js" India
+site:instahyre.com "Backend Engineer" "Redis" "PostgreSQL"
+site:cutshort.io "Backend Developer" "BullMQ" OR "Redis" OR "Node.js"
+site:wellfound.com "Backend Engineer" "TypeScript" remote
+"distributed systems engineer" "Node.js" India
 ```
 
-### Priority 2: [YOUR_DOMAIN_EXPERTISE]
+### Priority 1b: AI / GenAI Engineering
 
-These match your domain expertise.
-
-```
-site:[YOUR_JOB_BOARD] [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] OR [YOUR_REGION]
-site:[YOUR_JOB_BOARD] [YOUR_DOMAIN_KEYWORD_2] [YOUR_COUNTRY]
-site:linkedin.com/jobs [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] [YOUR_COUNTRY]
-```
-
-### Priority 3: [YOUR_ADJACENT_ROLE_TYPE]
-
-Adjacent roles you could pivot into.
+Applied AI roles that sit on top of real backend work: RAG, agents, LLM integration.
 
 ```
-site:[YOUR_JOB_BOARD] "[YOUR_ADJACENT_TITLE_1]" [YOUR_KEY_SKILL] [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_ADJACENT_TITLE_2]" [YOUR_KEY_SKILL] [YOUR_CITY]
+site:naukri.com "AI Engineer" OR "GenAI Engineer" "LangChain" (Bengaluru OR Hyderabad OR Remote)
+site:linkedin.com/jobs "AI Engineer" "RAG" "TypeScript" India
+site:linkedin.com/jobs "GenAI Engineer" "LangGraph" OR "LangChain" India
+site:instahyre.com "AI Engineer" "Python" OR "TypeScript" "LLM"
+site:wellfound.com "AI Engineer" "RAG" remote
+"LLM engineer" "Node.js" OR "TypeScript" India
 ```
 
-### Priority 4: Broader Technical / Consulting
+### Priority 2: Platform / Infrastructure Engineering
 
-Wider net for general technical roles.
+Adjacent, and a strong match for the self-hosting, Coolify/Hetzner, CI/CD side of the Baatasari work.
 
 ```
-site:[YOUR_JOB_BOARD] [YOUR_KEY_SKILL] developer [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_KEY_SKILL] developer" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "technical consultant" [YOUR_DOMAIN] [YOUR_CITY]
+site:naukri.com "Platform Engineer" "Docker" "CI/CD" (Bengaluru OR Hyderabad)
+site:linkedin.com/jobs "DevOps Engineer" "Node.js" India
+site:instahyre.com "Infrastructure Engineer" "PostgreSQL" "Redis"
+site:cutshort.io "Platform Engineer" "Docker" "AWS" OR "GCP"
+"site reliability engineer" "Node.js" India
 ```
+
+### Priority 3: Full-stack (Startup)
+
+Smaller startups where one engineer owns both halves. The Next.js/React work at Baatasari supports this honestly.
+
+```
+site:naukri.com "Full Stack Developer" "Next.js" "Node.js" (Bengaluru OR Hyderabad OR Remote)
+site:cutshort.io "Full Stack Engineer" "TypeScript" "React"
+site:wellfound.com "Full Stack Engineer" "Next.js" remote
+site:instahyre.com "Full Stack Engineer" "Node.js" "PostgreSQL"
+```
+
+### Priority 4: Broader Technical (Wider Net)
+
+Wider net: general backend and software engineering roles where the stack overlaps even if the title differs.
+
+```
+site:naukri.com "Software Engineer" "TypeScript" (Bengaluru OR Hyderabad)
+site:linkedin.com/jobs "Software Engineer" "PostgreSQL" "Redis" India
+site:foundit.in "Backend Developer" "Node.js" (Visakhapatnam OR Hyderabad)
+site:naukri.com "Software Development Engineer" "Node.js" India
+"technical consultant" backend India remote
+```
+
+## Adjacent Role Suggestions
+
+Roles worth watching that the candidate may not have considered, all honestly supported by the current profile:
+
+- **Solutions Engineer / Forward Deployed Engineer** - the LLM-integration plus systems-ownership combination is exactly this role at AI product companies. Search: `"solutions engineer" "LLM" OR "AI" India`.
+- **Developer Tooling / DevEx Engineer** - the Project Intelligence Agent is a developer-tooling product; the ATS/Playwright crawler is adjacency. Search: `"developer tools" engineer "TypeScript" India`.
+- **Technical Support Engineer (Tier 3) at AI infrastructure companies** - a common entry path into AI-infra companies for people with strong debugging depth. Search: `"technical support engineer" "LLM" OR "vector database" India`.
 
 ## Location Filter
 
-When evaluating results, verify the job location is within reasonable commute distance from your home. Define acceptable areas:
-- [YOUR_CITY] and surrounding areas
-- [ACCEPTABLE_AREA_1]
-- [ACCEPTABLE_AREA_2]
-- [BORDERLINE_AREA] (borderline - ~X min by transit)
-- [TOO_FAR_AREA] (too far)
+The candidate is open to relocation anywhere in India and works remotely well. Tiers:
+
+- **Ideal:** Visakhapatnam (home), Remote (India), Hyderabad, Bengaluru
+- **Acceptable:** Chennai, Pune, Gurugram, Noida, Mumbai
+- **Borderline:** other Indian metros - acceptable with relocation if the role is strong
+- **Too far:** on-site outside India without visa sponsorship
+
+When a posting's location is listed as a city but the role is remote or hybrid for India, treat it as **Ideal**.
 
 ## Language Filter
 
-Your working languages and levels are in CLAUDE.md's Languages table. When filtering scraped results, apply `04-job-evaluation.md`'s Language Gate: a posting requiring a language you haven't declared at all is excluded; a posting requiring a higher level than you declared in a language you do work in is not excluded, flag it clearly instead (see `job-scraper/SKILL.md`'s Step 3 "Quick Fit Assessment" for how the flag surfaces in `/scrape` output). Postings simply *written* in a language you don't work in, that don't require it on the job, are fine.
+Working language is English only. Hindi and Odia are spoken-only at conversational level - they are **not** working languages for written output.
+
+Apply `04-job-evaluation.md`'s Language Gate:
+- A posting requiring any language not on the candidate's table (German, French, Spanish, Japanese, etc.) → **exclude**
+- A posting requiring **written** Hindi or Odia → **flag**, and for roles where written work in those languages is structural, treat the flag as a soft fail
+- A posting requiring **spoken** Hindi or Odia at conversational level → **pass**
+- Postings simply *written* in a language the candidate doesn't work in, that don't require it on the job → fine, but flag for readability
 
 ## Date Filter
 
 Only include jobs posted within the last 14 days, or with an application deadline that has not yet passed. If a posting date cannot be determined, include it but flag as "date unknown".
 
+## Seniority Note
+
+The candidate has ~2 years of professional backend experience (Dec 2024 onward) plus a strong independent-project portfolio. Search and score accordingly:
+- **Include:** "Backend Engineer", "Software Engineer", plain titles with no seniority prefix, "Engineer II"
+- **Include with lower weight:** "Senior Backend Engineer" where the requirement is 2-4 years
+- **Exclude:** titles requiring 5+ years, "Staff", "Principal", "Lead" with people-management scope
+
 ## Adapting Queries
 
 If the user specifies a focus area, select queries from the matching category and also generate 2-3 custom queries for that focus. For example:
-- "/scrape [focus_area]" -> relevant category queries + custom focus-specific queries
+- `/scrape remote` → the Remote-tagged queries plus `site:wellfound.com` startup searches
+- `/scrape ai` → Priority 1b plus the Developer Tooling / Solutions Engineer adjacent searches
+- `/scrape bengaluru` → all categories filtered to Bengaluru

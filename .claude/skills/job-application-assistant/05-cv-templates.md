@@ -59,7 +59,7 @@ Expected output: `Output written on main_<company>_<role>.pdf (2 pages, ...)`. A
     linkcolor=blue,
     filecolor=magenta,
     urlcolor=blue,
-    pdftitle={[YOUR_NAME] - CV},
+    pdftitle={Niladribihari Mohanta - CV},
     % Keep pdfpagemode=UseNone: this block runs after moderncv's own
     % \AtEndPreamble (moderncv.cls sets pdfpagemode there), so a FullScreen
     % value here would win and open every CV in fullscreen presentation mode.
@@ -68,14 +68,14 @@ Expected output: `Output written on main_<company>_<role>.pdf (2 pages, ...)`. A
 \usepackage[scale=0.80]{geometry}
 \usepackage{import}
 
-% Personal data
-\name{[FIRST_NAME]}{[LAST_NAME]}
+%% Personal data
+\name{Niladribihari}{Mohanta}
 % If you have no address to list, DELETE this whole line. \address{}{}{} fails
 % with "There's no line here to end" on every moderncv version.
-\address{[YOUR_ADDRESS]}{}{}
-\phone[mobile]{[YOUR_PHONE]}
-\email{[YOUR_EMAIL]}
-\extrainfo{\href{[YOUR_LINKEDIN_URL]}{LinkedIn}, \href{[YOUR_GITHUB_URL]}{GitHub}}
+\address{Visakhapatnam, Andhra Pradesh, India}{}{}
+\phone[mobile]{+91 637 124 9887}
+\email{niladrigudu@gmail.com}
+\extrainfo{\href{https://github.com/niladri-gudu}{GitHub}, \href{https://niladri.dev}{niladri.dev}}
 
 \begin{document}
 \makecvtitle
@@ -137,11 +137,14 @@ When the role sits outside your home domain, **lead with the domain-transfer arg
 **Create 2-3 profile statement templates for your main role types:**
 
 <!-- SETUP: These are populated based on your background -->
-**For [YOUR_PRIMARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_1]
+**For Backend / Distributed Systems roles (primary):**
+> Backend engineer specialising in distributed systems and asynchronous event-driven architecture. Designs queue workflows that hold up under production load - dead-letter handling, replay, idempotent jobs - and has owned backend infrastructure end-to-end, from self-hosted services and CI/CD through to the frontend migration that followed. TypeScript/Node.js, PostgreSQL, Redis, BullMQ: reduced infrastructure costs by 25% and deployment time by 40% at [Company].
 
-**For [YOUR_SECONDARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_2]
+**For AI / GenAI Engineering roles (primary):**
+> Backend engineer who builds LLM-powered systems on real infrastructure rather than prompt layers. Delivered a retrieval-augmented generation agent over live codebases using LangChain and LangGraph, orchestrating stateful multi-step reasoning with pgvector retrieval and async queue-based indexing that cut query latency by 30%. Combines applied AI work with the distributed-systems background that keeps those systems running in production.
+
+**For Full-stack Startup roles (secondary):**
+> Product engineer comfortable across the stack. Owned backend services and infrastructure at a startup while also driving the React/Vite to Next.js migration that cut page load latency by 30%, and built end-to-end distributed systems - video transcoding, real-time social feeds - as independent projects. Ships complete features, not just one half of them.
 
 Statements labeled *[Used for: <company>_<role>]* were extracted from archived application drafts by `/setup` Path A. They are **phrasing references, never fact sources**: when drafting from one, every factual claim still comes from `01-candidate-profile.md` - a past tailored draft does not vouch for its own accuracy.
 

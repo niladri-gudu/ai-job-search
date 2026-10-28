@@ -1,10 +1,7 @@
-# Job Application Assistant for [YOUR_NAME]
-
-<!-- SETUP: This file is populated by running /setup -->
-<!-- After running /setup, all [PLACEHOLDER] tokens will be replaced with your actual information -->
+# Job Application Assistant for Niladribihari Mohanta
 
 ## Role
-This repo is a job application workspace. Claude acts as a career advisor and application assistant for [YOUR_NAME], helping with:
+This repo is a job application workspace. Claude acts as a career advisor and application assistant for Niladribihari Mohanta, helping with:
 1. **Job fit evaluation** - Assess job postings against your profile (skills, experience, behavioral traits)
 2. **CV tailoring** - Adapt existing CV templates (LaTeX/moderncv) to target specific roles
 3. **Cover letter writing** - Draft targeted cover letters using existing templates (LaTeX)
@@ -13,79 +10,79 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 
 ## Candidate Profile
 
-<!-- This section is auto-populated by /setup. You can also fill it in manually. -->
-
 ### Identity
-- **Name:** [YOUR_NAME]
-- **Location:** [YOUR_CITY], [YOUR_COUNTRY] ([YOUR_COMMUTE_CONSTRAINTS])
+- **Name:** Niladribihari Mohanta
+- **Location:** Visakhapatnam, Andhra Pradesh, India (open to relocating anywhere in India; remote roles welcome)
 - **Languages:**
   | Language | Level |
   |----------|-------|
-  | [LANGUAGE] | [LEVEL] |
-  <!-- Every language you work in professionally, with your level (CEFR, "native," "professional
-  working proficiency," whatever your CV/LinkedIn use - no need to force it into one scale). An
-  undeclared language is a hard deal-breaker if a posting requires it; a declared language at a
-  lower level than a posting wants is flagged for your own judgment, not auto-rejected. See
-  04-job-evaluation.md's Language Gate. -->
-- **CV language:** [YOUR_CV_LANGUAGE] <!-- English unless your market expects otherwise; /setup asks -->
+  | English | Professional working proficiency - spoken and written |
+  | Hindi | Conversational - spoken only, cannot write |
+  | Odia | Conversational - spoken only, cannot write |
+  <!-- Hindi and Odia are speech-only. A posting requiring written Hindi/Odia, or a
+  native/bilingual level in either, is a Language Gate FLAG - never a silent pass. -->
+- **CV language:** English
 
-- **Status:** [YOUR_EMPLOYMENT_STATUS]
-- **LinkedIn headline:** "[YOUR_LINKEDIN_HEADLINE]"
+- **Status:** Employed - Packaged App Developer at Accenture since July 2026; open to new roles
+- **LinkedIn headline:** "Backend Developer | Distributed Systems & Generative AI | BullMQ · Redis · PostgreSQL · Node.js/TypeScript"
 
 ### Education
-<!-- List your degrees, most recent first -->
-- **[DEGREE_LEVEL] in [FIELD]** ([YEAR_START]-[YEAR_END]) - [INSTITUTION]
-  - Thesis: "[THESIS_TITLE]"
-  - Topics: [KEY_TOPICS]
+- **B.Tech in Computer Science and Engineering** (2022-2026) - GITAM University, Visakhapatnam, Andhra Pradesh
+  - CGPA: 7.76/10
+  - Topics: computer science and engineering fundamentals; self-directed focus on distributed systems and applied AI
+- **High School Diploma** (2009-2022) - Delhi Public School, India
 
 ### Professional Experience
-<!-- List your roles, most recent first -->
-- **[JOB_TITLE]** ([START_DATE] - [END_DATE]) - **[COMPANY]** ([LOCATION])
-  - [KEY_RESPONSIBILITY_1]
-  - [KEY_RESPONSIBILITY_2]
-  - [KEY_ACHIEVEMENT]
+- **Packaged App Developer** (July 2026 - Present) - **Accenture** (Ahmedabad, Gujarat, India)
+  - Completed intensive full-stack training on the MEAN stack (MongoDB, Express.js, Angular, Node.js), focused on scalable enterprise applications
+  - Builds responsive web applications and RESTful APIs with CRUD operations, authentication workflows, and database integration
+  - Works in an Agile environment across code reviews, debugging, testing, and application deployment
+  - Strengthened JavaScript, TypeScript, Git, and SQL proficiency through project-based assignments
+
+- **Backend Engineer** (December 2024 - June 2026) - **Baatasari** (Visakhapatnam, Andhra Pradesh, India)
+  - Migrated core backend services from Firebase to self-hosted Supabase, eliminating vendor lock-in and cutting monthly infrastructure costs by ~25%
+  - Architected and deployed production infrastructure on Hetzner via Coolify, cutting deployment time by ~40% through automated CI/CD
+  - Re-engineered the web client from Vite to Next.js, reducing initial page load latency by ~30% via SSR caching
+  - Refactored backend endpoints and data serialization pipelines, improving average API response time by ~20% ahead of the GCP migration
+  - Mentored backend developer interns, reviewing PRs and setting technical direction
 
 ### Technical Skills
-- **Primary:** [YOUR_PRIMARY_SKILLS]
-- **Secondary:** [YOUR_SECONDARY_SKILLS]
-- **Domain:** [YOUR_DOMAIN_EXPERTISE]
-- **Software:** [YOUR_TOOLS_AND_SOFTWARE]
+- **Primary:** TypeScript, Node.js, distributed systems, asynchronous event-driven pipelines, Redis, BullMQ, PostgreSQL
+- **Secondary:** Next.js, React, JavaScript, Fastify, Express, NestJS, Prisma, MongoDB, Docker, Git, CI/CD
+- **Domain:** Queue architecture and job processing (DLQs, replay, exponential backoff, idempotency), real-time systems (Redis Pub/Sub, Socket.IO), LLM-integrated backends, retrieval-augmented generation
+- **Software:** LangChain, LangGraph, pgvector and vector embeddings, LLM APIs (including Gemini), Coolify, Hetzner, Supabase, Firebase, GCP, AWS S3, FFmpeg, HLS, Playwright
 
 ### Certifications
-<!-- List relevant certifications with dates -->
-- **[CERTIFICATION_NAME]** - [HOURS]h - completed [DATE]
+- None. The Accenture full-stack program (July 2026) was employer-led training, not a certification.
 
 ### Publications
-<!-- List peer-reviewed publications, if any -->
-- [AUTHOR_LIST] ([YEAR]). [TITLE]. [JOURNAL].
+- None.
 
 ### Awards
-<!-- List relevant awards, hackathons, competitions -->
-- [AWARD_NAME] - [EVENT] ([YEAR])
+- None.
 
 ### Behavioral Profile
-<!-- Your behavioral assessment results (PI, DISC, Myers-Briggs, or self-assessment) -->
-- **[TRAIT_1]** - [DESCRIPTION]
-- **[TRAIT_2]** - [DESCRIPTION]
-- **Strengths:** [YOUR_STRENGTHS]
-- **Growth areas:** [YOUR_GROWTH_AREAS]
-- **Thrives in:** [YOUR_IDEAL_ENVIRONMENT]
+- **Reliability under load** - Builds systems so queues don't drop jobs and migrations don't lose data; treats production stability as the baseline
+- **Owns the whole problem** - Took backend infrastructure end-to-end at Baatasari: services, hosting, CI/CD, then the frontend migration that followed
+- **Self-directed builder** - Designs distributed and AI-integrated systems outside client work specifically to develop those skills
+- **Strengths:** systems thinking, debugging concurrency and queue failures, shipping end-to-end in small teams
+- **Growth areas:** experience so far is small-team and startup-scale; enterprise process and cross-team coordination are newer (Accenture is the first exposure)
+- **Thrives in:** startups and mid-sized companies where infrastructure reliability and shipping speed both matter
 
 ### What Excites You
-<!-- What motivates you professionally -->
-- [PASSION_1]
-- [PASSION_2]
+- Queue architecture, real-time systems, and LLM-integrated backends
+- Building systems that hold up under real production load
+- Distributed-systems problems where correctness actually matters
 
 ### Target Sectors
-<!-- Industries and companies you're targeting -->
-- [SECTOR_1]: [EXAMPLE_COMPANIES]
-- [SECTOR_2]: [EXAMPLE_COMPANIES]
+- **Backend / distributed systems:** B2B SaaS, developer tooling, infrastructure platforms
+- **AI / GenAI engineering:** Applied-AI product companies building agentic and RAG systems
 
 ### Deal-breakers
-<!-- Hard constraints on job search. Language requirements are handled separately and
-automatically from your Languages table above - don't duplicate them here. -->
-- [DEALBREAKER_1]
-- [DEALBREAKER_2]
+<!-- Language requirements are handled automatically by the Language Gate from the
+Languages table above - don't duplicate them here. -->
+- Roles that are maintenance-only, with no new development
+- On-site roles outside India without visa sponsorship
 
 ## Repo Structure
 - `cv/` - LaTeX CV variants (moderncv template, banking style)

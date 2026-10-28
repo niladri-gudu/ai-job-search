@@ -104,6 +104,15 @@ The cover letter is **not a CV repetition**. It should be forward-looking:
 - Lead with project management, mentoring, course development
 - Frame advanced degrees as evidence of independent project delivery
 
+## Candidate-Specific Style Notes
+
+<!-- Populated by /setup. Update from real application drafts as patterns emerge. -->
+
+- **Default voice is first-person and technical.** The candidate's own writing (LinkedIn About, project READMEs) is concrete and systems-focused: "queues that don't drop jobs", "migrations that don't lose data". That register is a strength - keep the specificity and drop only the informality.
+- **Numbers carry the argument.** Cost, latency and deployment-time percentages are the strongest material available. Every letter should have at least one.
+- **English only.** The candidate writes professionally in English and speaks Hindi and Odia but does not write them. Cover letters always in English (or the posting's language only if it is a language the candidate genuinely writes).
+- **Never claim enterprise scale.** The candidate's experience is startup and small-team; a letter that implies large-scale distributed-systems tenure fails the backtrack test.
+
 ## Multi-language Applications
 - Default to the language of the job posting
 - Cover letters in the posting's language should feel natural, not translated
