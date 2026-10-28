@@ -95,8 +95,40 @@ Expected output: `Output written on main_<company>_<role>.pdf (2 pages, ...)`. A
 
 The `\renewcommand*` on `\namefont` and the three `\colorlet` lines in the preamble are required on lualatex+MiKTeX. Without them the name and section headings render in black even though `\moderncvcolor{blue}` is set, which looks inconsistent with the rest of the blue accent scheme (links, bullet markers, contact icons). The cause: `moderncvstylebanking.sty` defines the name colours with `\colorlet`, which *copies* the accent colour as it is before the scheme is applied, so the name colours are frozen to the pre-scheme value; re-assigning them with `\colorlet` after `\moderncvcolor{blue}` (as the preamble does) re-pins them to `color1`. `\namefont` is the shared hook every name-style macro routes through, so the block is version-agnostic - including moderncv 2.3.1 from Debian/Ubuntu apt, which has no `\firstnamestyle`/`\lastnamestyle` at all. Both names render bold; if you prefer regular weight, change `\bfseries` to `\mdseries` in the `\namefont` line (the weight now lives there, so it applies to the whole name). Don't drop the overrides - on most modern installs the defaults render visibly wrong.
 
-### Spacing inside itemize lists (important)
+### Never wrap `\cventry` entries in an outer `itemize` (important - confirmed overflow)
 
+Call `\cventry` at top level. Wrap only its **body** in `itemize`, never the entry itself.
+
+Banking style (`moderncvbodyiii.sty`) sizes each entry's tabular to `\maincolumnwidth`, defined as `\textwidth - \leftskip - \rightskip` and computed once at load. Inside an enclosing `itemize` the available width is `\linewidth`, which is narrower by the list indent. The mismatch emits an `Overfull \hbox (10.95pt too wide)` — exactly one em at 11pt — on every entry, on the title line and the body alike, even for an entry with empty location and empty body. This reproduces on stock moderncv 2.5 with no preamble customisation, so it is not caused by anything in this template.
+
+```latex
+% WRONG - one Overfull \hbox per entry
+\begin{itemize}
+\item{\cventry{2024-2026}{Role}{Company}{City}{}{...}}
+\end{itemize}
+
+% RIGHT - \cventry at top level, itemize only for the bullet body
+\cventry{2024-2026}{Role}{Company}{City}{}{\vspace{1pt}
+\begin{itemize}
+    \item ...
+\end{itemize}}
+```
+
+`\maincolumnwidth` cannot be patched globally to `\linewidth`: it is also used by `\cvitem` and `\cvitemwithcomment`, which are correctly laid out and would overflow in the opposite direction.
+
+### `\cventry` argument order (easy to get backwards for projects)
+
+The signature is `\cventry[spacing]{year}{title}{company}{city}{country}{body}`. Argument 2 renders **italic** and argument 3 renders **bold**. For jobs that reads naturally (bold employer, italic role). For projects it is the reverse of what you usually want, so pass the description as argument 2 and the project name as argument 3:
+
+```latex
+\cventry{Aug 2026}{RAG system over live code}{Project Intelligence Agent}{}{}{...}
+% renders: Project Intelligence Agent   (bold)
+%          RAG system over live code    (italic)
+```
+
+An empty `city`/`country` pair is fine and suppresses that line.
+
+### Spacing inside itemize lists (important)
 **Do not place `\vspace{...}` between `\item` entries in an `itemize` list.** Even though the source looks symmetric, this pattern occasionally produces a noticeably oversized gap before a single item: the inter-item `\vspace` creates a paragraph break that interacts unpredictably with the list's internal `\itemsep`, so LaTeX renders one of the gaps wider than the rest. Remove the inter-item `\vspace` and let `itemize` use its native uniform spacing.
 
 ```latex
@@ -254,14 +286,24 @@ After writing the CV and before presenting to the user, always compile and visua
 ### Fixing common page-break problems
 
 **Problem: entry title on page 1, bullets orphaned to page 2**
-Add `\needspace{5\baselineskip}` immediately before the problematic `\cventry`:
+Add `\needspace{5\baselineskip}` immediately before the problematic `\cventry` (which now sits at top level, not inside a list):
 ```latex
 \needspace{5\baselineskip}
-\item{\cventry{YEAR-YEAR}{Role Title}{Organization}{Location}{}{...}}
+\cventry{YEAR-YEAR}{Role Title}{Organization}{Location}{}{...}
 ```
 Include `\usepackage{needspace}` in the preamble.
 
-**Caveat - use `\needspace` before entries, never before `\section` headings.** A section-level `\needspace` pushes the entire section (heading plus content) to the next page whenever the request does not fit, stranding empty space above and typically *adding* a page instead of saving one. Apply it only to the individual `\cventry` that actually orphans, and only after a compile shows the orphan.
+**Problem: a section heading is orphaned at the bottom of a page**
+`\needspace` before a `\cventry` keeps the *entry* together but not the *heading* above it: the heading is laid out first, so it can sit alone at the foot of the page with its first entry pushed over. Guard the section heading itself, sized to the heading plus roughly one entry:
+
+```latex
+\needspace{10\baselineskip}
+\section{Projects}
+```
+
+This is the one case where a section-level `\needspace` is correct. Verify the page count afterwards — if it promotes the section to a new page that then overflows to three, cut content instead.
+
+**Caveat - do not use a section-level `\needspace` routinely.** A section-level `\needspace` can push an entire section (heading plus content) to the next page whenever the request does not fit, stranding empty space above and sometimes *adding* a page instead of saving one. Reach for it only when a compile shows a heading actually orphaned.
 
 **Problem: one trailing section spills to page 3 (e.g., References alone on page 3)**
 Add `\enlargethispage{2-3\baselineskip}` before a late section (e.g., before `\section{Honors and Awards}`) to stretch page 2 by a few lines. This is the standard LaTeX rescue for near-miss overflows.

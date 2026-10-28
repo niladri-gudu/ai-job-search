@@ -48,6 +48,13 @@
 \usepackage[scale=0.80]{geometry}
 \usepackage{import}
 \usepackage{needspace}
+% Do NOT wrap \cventry entries in an outer `itemize`. moderncv sizes each
+% entry's tabular to \maincolumnwidth (= \textwidth - \leftskip - \rightskip,
+% computed once), but inside an itemize the available width is \linewidth,
+% narrower by the list indent. The mismatch produces an Overfull \hbox of
+% exactly one em (10.95pt at 11pt) on every entry, title line and body alike.
+% Calling \cventry at top level, with an itemize only for its bullet body,
+% matches how moderncv's own template uses it and compiles clean.
 
 % personal data
 \name{Niladribihari}{Mohanta}
@@ -95,71 +102,70 @@
 
 \section{Professional Experience}
 \vspace{3pt}
-\begin{itemize}
 
 % --- Most Recent Role ---
 \needspace{5\baselineskip}
-\item{\cventry{Jul 2026 - Present}{Packaged App Developer}{Accenture}{Ahmedabad, India}{}{\vspace{1pt}
+\cventry{Jul 2026 - Present}{Packaged App Developer}{Accenture}{Ahmedabad, India}{}{\vspace{1pt}
 \begin{itemize}
     \item {Completed intensive full-stack training on the MEAN stack (MongoDB, Express.js, Angular, Node.js), focused on scalable enterprise applications.}
     \item {Develops responsive web applications and RESTful APIs with CRUD operations, authentication workflows, and database integration.}
     \item {Works in an Agile environment across code reviews, debugging, testing, and application deployment.}
-\end{itemize}}}
+\end{itemize}}
 
 \vspace{3pt}
 
 % --- Previous Role ---
 \needspace{5\baselineskip}
-\item{\cventry{Dec 2024 - Jun 2026}{Backend Engineer}{Baatasari}{Visakhapatnam, India}{}{\vspace{1pt}
+\cventry{Dec 2024 - Jun 2026}{Backend Engineer}{Baatasari}{Visakhapatnam, India}{}{\vspace{1pt}
 \begin{itemize}
     \item {Migrated core backend services from Firebase to self-hosted Supabase, eliminating vendor lock-in and reducing monthly infrastructure costs by \textasciitilde25\%.}
     \item {Architected and deployed production infrastructure on Hetzner via Coolify, cutting deployment time by \textasciitilde40\% through automated CI/CD workflows.}
     \item {Re-engineered the web client architecture from Vite to Next.js, reducing initial page load latency by \textasciitilde30\% via SSR caching.}
     \item {Refactored backend endpoints and data serialization pipelines, improving average API response time by \textasciitilde20\% ahead of the GCP migration.}
     \item {Mentored backend developer interns, reviewing PRs and setting technical direction for a small team.}
-\end{itemize}}}
-
-\end{itemize}
+\end{itemize}}
 
 % ============================================================
 %     PROJECTS
 % ============================================================
 
+% Keep the heading with the first entry. A section-level \needspace is normally
+% avoided because it can strand whitespace and add a page, but here the page
+% count stays at 2 and the alternative is an orphaned heading alone at the
+% bottom of page 1, which is strictly worse.
+\needspace{10\baselineskip}
 \section{Projects}
 \vspace{3pt}
-\begin{itemize}
 
 \needspace{5\baselineskip}
-\item{\cventry{Aug 2026 - Sep 2026}{Project Intelligence Agent}{RAG System over Live Data \& Memory}{}{}{\vspace{1pt}
+\cventry{Aug 2026 - Sep 2026}{RAG system over live code and memory}{Project Intelligence Agent}{}{}{\vspace{1pt}
 \href{https://github.com/niladri-gudu/project-intelligence-agent}{github.com/niladri-gudu/project-intelligence-agent}
 \begin{itemize}
     \item {Built an automated repository-intelligence pipeline that clones repos, parses abstract syntax trees, and indexes codebases for contextual retrieval.}
     \item {Designed a RAG architecture with LangChain for chunking, embedding and retrieval, and LangGraph orchestrating stateful multi-step agentic reasoning over codebase context.}
     \item {Implemented asynchronous worker queues for repository diffs, dependency graphing and LLM rate-limit throttling, cutting average query latency by \textasciitilde30\% and improving retrieval relevance by \textasciitilde35\%.}
-\end{itemize}}}
+\end{itemize}}
 
 \vspace{3pt}
 
 \needspace{5\baselineskip}
-\item{\cventry{Apr 2026 - May 2026}{TranscodeX}{Distributed Video Processing \& Streaming Platform}{}{}{\vspace{1pt}
+\cventry{Apr 2026 - May 2026}{Distributed video processing and streaming platform}{TranscodeX}{}{}{\vspace{1pt}
 \href{https://github.com/niladri-gudu/transcodex}{github.com/niladri-gudu/transcodex}
 \begin{itemize}
     \item {Architected an asynchronous event-driven pipeline using BullMQ and Redis to orchestrate FFmpeg transcoding into 480p/720p/1080p renditions, under default HLS packaging and thumbnail generation.}
     \item {Implemented multipart video chunk uploads and real-time processing telemetry using Redis Pub/Sub and Socket.IO, and integrated automated transcription with contextual search over processed media.}
-\end{itemize}}}
+\end{itemize}}
 
 \vspace{3pt}
 
 \needspace{5\baselineskip}
-\item{\cventry{Mar 2026 - Apr 2026}{Strata}{Distributed Social Networking Backend}{}{}{\vspace{1pt}
+\cventry{Mar 2026 - Apr 2026}{Distributed social networking backend}{Strata}{}{}{\vspace{1pt}
 \href{https://github.com/niladri-gudu/strata}{github.com/niladri-gudu/strata}
 \begin{itemize}
     \item {Engineered an event-driven feed and notification engine using BullMQ workers and Redis Pub/Sub, separating ingestion from delivery for consistent performance under load.}
     \item {Designed resilient job-handling workflows with Dead Letter Queues, replay mechanics and exponential backoff retry policies, minimising lost events during failures.}
     \item {Built cursor-based pagination APIs for activity feeds and exposed runtime visibility through Bull Board dashboards, health endpoints and queue metrics.}
-\end{itemize}}}
-
-\end{itemize}
+\end{itemize}}
 
 % ============================================================
 %     EDUCATION
@@ -167,13 +173,10 @@
 
 \section{Education}
 \vspace{1pt}
-\begin{itemize}
 
-\item{\cventry{2022-2026}{B.Tech in Computer Science and Engineering}{GITAM University}{Visakhapatnam, India}{}{\vspace{1pt}
+\cventry{2022-2026}{B.Tech in Computer Science and Engineering}{GITAM University}{Visakhapatnam, India}{}{\vspace{1pt}
 CGPA: 7.76/10.
-}}
-
-\end{itemize}
+}
 
 % ============================================================
 %     LANGUAGES
@@ -194,5 +197,4 @@ CGPA: 7.76/10.
 \begin{itemize}
 \item{Available upon request.}
 \end{itemize}
-
 \end{document}
